@@ -297,6 +297,14 @@
       "kategori": "Makanan",
       "nilai": "19000",
       "jenis": "Pemasukan"
+    },
+    {
+      "id": 1700693152617,
+      "tanggal": "222222",
+      "keterangan": "bisa",
+      "kategori": "ad",
+      "nilai": "ad",
+      "jenis": "Pengeluaran"
     }
   ]
 }
