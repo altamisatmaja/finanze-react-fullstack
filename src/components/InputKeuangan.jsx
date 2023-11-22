@@ -6,6 +6,7 @@ function InputKeuangan() {
   const navigate = useNavigate();
 
   const [datakeuangan, setDataKeuangan] = useState([]);
+  const [caridata, setCariData] = useState([]);
   
   const [id, idchange] = useState("");
   const [tanggal, tanggalchange] = useState("");
@@ -14,12 +15,14 @@ function InputKeuangan() {
   const [nilai, nilaichange] = useState("");
   const [jenis, jenischange] = useState("");
 
+  const [data, setData] = useState([]);
+
   useEffect(() => {
     ReadDatabase();
   }, []);
 
-  const ReadDatabase = () => {
-    axios.get("http://localhost:8083/datakeuangan")
+  const ReadDatabase = async () => {
+    axios.get("http://localhost:8087/datakeuangan")
       .then((res) => {
         setDataKeuangan(res.data);
       })
@@ -50,7 +53,7 @@ function InputKeuangan() {
       jenis: jenistransaksi,
     };
   
-    fetch("http://localhost:8083/datakeuangan", {
+    fetch("http://localhost:8087/datakeuangan", {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(regobj)
@@ -64,7 +67,7 @@ function InputKeuangan() {
   }
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:8083/datakeuangan/${id}`, {
+    fetch(`http://localhost:8087/datakeuangan/${id}`, {
       method: "DELETE",
     })
       .then((res) => {
@@ -74,6 +77,28 @@ function InputKeuangan() {
       .catch((err) => {
         toast.error('Gagal menghapus data: ' + err.message);
       });
+  }
+
+  const HandleSearch = async (e) => {
+    e.preventDefault();
+    return await axios.get(`http://localhost:8087/datakeuangan?q=${caridata}`)
+    .then((res) => {
+      setDataKeuangan(res.data);
+      setCariData("");
+      })
+  }
+
+  const HandleFilter = async (value) => {
+    return await axios
+    .get(`http://localhost:8087/datakeuangan?jenis=${value}`)
+    .then((res) => {
+      setDataKeuangan(res.data);
+      setCariData("");
+      })
+  }
+
+  const HandleReset = () => {
+    ReadDatabase();
   }
   
   return (
@@ -87,19 +112,19 @@ function InputKeuangan() {
           <div className='flex mt-2 justify-between'> 
             <div className='px-2'>
               <p className='text-lg font-medium'>Tanggal Transaksi</p>
-              <input required type="text" value={tanggal} onChange={e => tanggalchange(e.target.value)} className='border w-56 rounded-md px-2 h-10 text-sm font-medium border-blue-200'/>
+              <input required type="text" placeholder='22/08/2023' value={tanggal} onChange={e => tanggalchange(e.target.value)} className='border w-56 rounded-md px-2 h-10 text-sm font-medium border-blue-200'/>
             </div>
             <div className='px-2'>
               <p className='text-lg font-medium'>Keterangan Transaksi</p>
-              <input required type="text" value={keterangan} onChange={e => keteranganchange(e.target.value)} className='border w-56 rounded-md px-2 h-10 text-sm font-medium border-blue-200'/>
+              <input required type="text" placeholder='Beli makan' value={keterangan} onChange={e => keteranganchange(e.target.value)} className='border w-56 rounded-md px-2 h-10 text-sm font-medium border-blue-200'/>
             </div>
             <div className='px-2'>
               <p className='text-lg font-medium'>Kategori Transaksi</p>
-              <input required type="text" value={kategori} onChange={e => kategorichange(e.target.value)} className='border w-56 rounded-md px-2 h-10 text-sm font-medium border-blue-200'/>
+              <input required type="text" placeholder='Makanan' value={kategori} onChange={e => kategorichange(e.target.value)} className='border w-56 rounded-md px-2 h-10 text-sm font-medium border-blue-200'/>
             </div>
             <div className='px-2'>
               <p className='text-lg font-medium'>Nilai Transaksi</p>
-              <input required type="text" value={nilai} onChange={e => nilaichange(e.target.value)} className='border w-full rounded-md px-2 h-10 text-sm font-medium border-blue-200'/>
+              <input required type="text" placeholder='10000' value={nilai} onChange={e => nilaichange(e.target.value)} className='border w-full rounded-md px-2 h-10 text-sm font-medium border-blue-200'/>
             </div>
           </div>
           <div className='flex px-2 items-center justify-between'>
@@ -107,10 +132,25 @@ function InputKeuangan() {
             <div className='pt-4 flex gap-2'>
               <button type='submit' onClick={Bersihkan} className='bg-blue-900 h-8 w-24 rounded-lg px-2 mr-2 text-sm font-semibold text-white'>Bersihkan</button>
               <button type='submit' onClick={(e) => handleSubmit(e, 'Pemasukan')} className='bg-blue-700 h-8 w-50 rounded-lg px-1 mr-2 text-sm font-semibold text-white'>Tambah Pemasukan</button>
-              <button type='submit' onClick={(e) => handleSubmit(e, 'Pengeluran')} className='bg-blue-700 h-8 w-50 rounded-lg px-1 text-sm font-semibold text-white'>Tambah Pengeluaran</button>
+              <button type='submit' onClick={(e) => handleSubmit(e, 'Pengeluaran')} className='bg-blue-700 h-8 w-50 rounded-lg px-1 text-sm font-semibold text-white'>Tambah Pengeluaran</button>
             </div>
           </div>
         </form>
+        <form onSubmit={HandleSearch}>
+        <div>
+          <div>
+            <p className='text-slate-500 text-sm font-medium pt-4'>Cari data</p>
+          </div>
+          <input value={caridata} onChange={(e) => setCariData(e.target.value)} type="text" name="" id="" />
+          <button className='bg-blue-900 h-8 w-24 rounded-lg px-2 mr-2 text-sm font-semibold text-white'>Cari</button>
+          <button onClick={HandleReset} className='bg-blue-900 h-8 w-24 rounded-lg px-2 mr-2 text-sm font-semibold text-white'>Bersihkan</button>
+        </div>
+        </form>
+        <div>
+          <p className='text-slate-500 text-sm font-medium pt-4'>Cari berdasarkan jenis:</p>
+          <button onClick={() => HandleFilter("Pemasukan")} className='bg-blue-900 h-8 w-24 rounded-lg px-2 mr-2 text-sm font-semibold text-white' >Pemasukan</button>
+          <button onClick={() => HandleFilter("Pengeluaran")} className='bg-blue-900 h-8 w-24 rounded-lg px-2 mr-2 text-sm font-semibold text-white' >Pengeluaran</button>
+        </div>
       </div>
 
       <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md mt-5 mx-2">
@@ -124,8 +164,14 @@ function InputKeuangan() {
             <th scope="col" className="px-6 py-4 font-medium text-gray-900">Aksi</th>
           </tr>
         </thead>
+        {datakeuangan.length === 0 ? (
         <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-        {datakeuangan.map((data, id) => (
+          <tr>
+            <td className=''>Tidak ada data</td>
+          </tr>
+        </tbody>
+        ) : datakeuangan.map((data, id) => (
+        <tbody className="divide-y divide-gray-100 border-t border-gray-100">
           <tr key={id} className="hover:bg-gray-50">
             <th className="px-6 py-4">
               {data.tanggal}
@@ -193,8 +239,8 @@ function InputKeuangan() {
               </div>
             </td>
           </tr>
-        ))}
         </tbody>
+        ))}
       </table>
     </div>
   </div>

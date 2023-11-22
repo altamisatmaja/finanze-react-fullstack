@@ -8,7 +8,8 @@ export default {
     extend: {
       fontFamily: {
         Montserrat: ["Montserrat", "sans-serif"],
-        Epilogue: ["Epilogue", "sans-serif"]
+        Epilogue: ["Epilogue", "sans-serif"],
+        MagicRetro: ["MagicRetro"]
       }
     },
   },

@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function Login() {
+  const [token, setToken] = useState('');
+
   const [username, usernameupdate] = useState('');
   const [password, passwordupdate] = useState('');
 
@@ -14,7 +16,7 @@ function Login() {
     
     if (validasi()) {
       // console.log('Proses')
-      fetch("http://localhost:8083/users/" + username).then((res) => {
+      fetch("http://localhost:8087/users/" + username).then((res) => {
         return res.json();
       }).then((resp) => {
         if (Object.keys(resp).length === 0) {

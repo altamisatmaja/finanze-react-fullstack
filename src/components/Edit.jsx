@@ -15,7 +15,7 @@ function Edit() {
   });
 
   useEffect(() => {
-    axios.get(`http://localhost:8083/datakeuangan/${id}`)
+    axios.get(`http://localhost:8087/datakeuangan/${id}`)
       .then((res) => {
         setDataToEdit(res.data);
       })
@@ -27,7 +27,7 @@ function Edit() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.put(`http://localhost:8083/datakeuangan/${id}`, dataToEdit)
+    axios.put(`http://localhost:8087/datakeuangan/${id}`, dataToEdit)
       .then((response) => {
         if (response.status === 200) {
           alert('Data berhasil diubah');
