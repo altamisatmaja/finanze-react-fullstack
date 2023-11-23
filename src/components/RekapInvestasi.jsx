@@ -1,12 +1,12 @@
 import React from 'react'
 import Sidebar from '../includes/Sidebar';
 
-function Laporan() {
+function RekapInvestasi() {
   return (
     <div>
         <Sidebar/>
-    </div>
+        RekapInvestasi</div>
   )
 }
 
-export default Laporan
+export default RekapInvestasi

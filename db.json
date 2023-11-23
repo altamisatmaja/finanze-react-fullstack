@@ -299,12 +299,28 @@
       "jenis": "Pemasukan"
     },
     {
-      "id": 1700693152617,
-      "tanggal": "222222",
-      "keterangan": "bisa",
-      "kategori": "ad",
-      "nilai": "ad",
-      "jenis": "Pengeluaran"
+      "id": 1700695856747,
+      "tanggal": "2023-11-22T23:30:45.655Z",
+      "keterangan": "a",
+      "kategori": "a",
+      "nilai": "12",
+      "jenis": "Pemasukan"
+    },
+    {
+      "id": 1700695935897,
+      "tanggal": "2023-10-28T17:00:00.000Z",
+      "keterangan": "a",
+      "kategori": "a3",
+      "nilai": "3",
+      "jenis": "Pemasukan"
+    },
+    {
+      "id": 1700696014448,
+      "tanggal": "2023-11-22T23:33:18.267Z",
+      "keterangan": "a",
+      "kategori": "a",
+      "nilai": "3",
+      "jenis": "Pemasukan"
     }
   ]
 }

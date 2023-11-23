@@ -95,9 +95,9 @@ function Dashboard() {
 
   return (
     <>
-    <div className="flex min-h-screen w-full flex-row bg-gray-100 text-gray-800 p-5">
+    <div className="flex min-h-screen flex-row bg-gray-100 text-gray-800 p-5">
         <Sidebar/>
-        <main className="main -ml-48 w-full flex-col px-4 transition-all duration-150 ease-in md:ml-0">
+        <main className="main w-full flex-col pl-4 transition-all duration-150 ease-in md:ml-0">
             <div className="h-full items-center justify-center text-start text-3xl font-bold">
                 <div className='px-5'>
                     <h1 className='font-Epilogue text-4xl'>Input Data Keuangan</h1>

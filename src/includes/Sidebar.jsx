@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
 import finanzelogo from "../assets/logofigma.png";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function Sidebar() {
   return (
     <>
-        <div className="sidebar justify-end w-72 rounded-xl -translate-x-full transform bg-blue-700 p-3 transition-transform duration-150 ease-in md:translate-x-0 md:shadow-md">
+        <div className="sidebar justify-end w-1/3 rounded-xl -translate-x-full transform bg-blue-700 p-3 transition-transform duration-150 ease-in md:translate-x-0 md:shadow-md">
             <div className="my-4 w-full text-center">
                 <img src={finanzelogo} alt="logo" />
             </div>
             <div className="pt-4 pb-8">
                 <ul className="space-y-2">
+                    <Link to='/dashboard'>
                     <li>
                         <a className="text-white flex items-center justify-between py-1.5 px-4 rounded cursor-pointer">
                             <span className="flex items-center space-x-2">
@@ -21,6 +22,8 @@ function Sidebar() {
                             </span>
                         </a>
                     </li>
+                    </Link>
+                    <Link to='/laporan'>
                     <li>
                         <a className="hover:bg-indigo-950 hover:text-white flex items-center text-white py-1.5 px-4 rounded space-x-2 cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -29,6 +32,8 @@ function Sidebar() {
                             <span>Laporan</span>
                         </a>
                     </li>
+                    </Link>
+                    <Link to='/rekapinvestasi'>
                     <li>
                         <a className="hover:bg-indigo-950 hover:text-white flex items-center text-white py-1.5 px-4 rounded space-x-2 cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -37,6 +42,8 @@ function Sidebar() {
                             <span>Rekap Investasi</span>
                         </a>
                     </li>
+                    </Link>
+                    <Link to='/statistik'>
                     <li>
                         <a className="hover:bg-indigo-950 hover:text-white flex items-center text-white py-1.5 px-4 rounded space-x-2 cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -45,6 +52,8 @@ function Sidebar() {
                             <span>Statistik</span>
                         </a>
                     </li>
+                    </Link>
+                    <Link to='/inputkeuangan'>
                     <li>
                         <a className="hover:bg-indigo-950 hover:text-white flex items-center text-white py-1.5 px-4 rounded space-x-2 cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -53,6 +62,8 @@ function Sidebar() {
                             <span>Input Keuangan</span>
                         </a>
                     </li>
+                    </Link>
+                    <Link to='/inputinvestasi'>
                     <li>
                         <a className="bg-indigo-950 hover:bg-indigo-950 hover:text-white flex items-center justify-between text-white py-1.5 px-4 rounded space-x-2 cursor-pointer">
                             <span className="flex items-center space-x-2">
@@ -63,6 +74,7 @@ function Sidebar() {
                             </span>
                         </a>
                     </li>
+                    </Link>
                 </ul>
             </div>
             <div className='px-2 align-bottom'>
