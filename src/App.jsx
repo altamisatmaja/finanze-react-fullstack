@@ -11,6 +11,7 @@ import Statistik from './components/Statistik';
 import Beranda from './pages/Beranda';
 import Laporan from './pages/Laporan.jsx';
 import RekapInvestasi from './components/RekapInvestasi.jsx';
+import ApiCoba from './components/js/api_copy.jsx';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/laporan" element={ <Laporan/> } />
         <Route path="/rekapinvestasi" element={ <RekapInvestasi/> } />
         <Route path="/" element={ <Beranda/> } />
+        <Route path="/coba" element={ <ApiCoba/> } />
       </Routes>
     </div>
   )

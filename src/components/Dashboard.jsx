@@ -70,6 +70,7 @@ function Dashboard() {
   const bulan = "12";
   const filterdataberdasarkanbulan = dataKeuangan.filter(data => {
     const dataMonth = data.tanggal.split('/')[1];
+    // const dataMonth = data.tanggal.split('-')[1];
     return dataMonth === bulan;
   });
 
@@ -90,14 +91,11 @@ function Dashboard() {
   const totalPemasukann = jenistotalperbulan['Pemasukan'] || 0;
   const totalPengeluarann = jenistotalperbulan['Pengeluaran'] || 0;
 
-
-
-
   return (
     <>
     <div className="flex min-h-screen flex-row bg-gray-100 text-gray-800 p-5">
         <Sidebar/>
-        <main className="main w-full flex-col pl-4 transition-all duration-150 ease-in md:ml-0">
+        <main className="main w-5/6 flex-col px-4 transition-all duration-150 ease-in md:ml-0">
             <div className="h-full items-center justify-center text-start text-3xl font-bold">
                 <div className='px-5'>
                     <h1 className='font-Epilogue text-4xl'>Input Data Keuangan</h1>
@@ -163,7 +161,7 @@ function Dashboard() {
             </div>
         </main>
         
-        <nav className="w-72 h-full sidebar">
+        <nav className="w-1/4 h-full sidebar">
             <div className='flex w-96 px-2 py-3'>
                 <p className='font-Epilogue flex font-semibold text-2xl'>Detail Cash Flow 💸</p>
             </div>

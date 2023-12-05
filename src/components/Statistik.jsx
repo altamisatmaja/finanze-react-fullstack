@@ -1,49 +1,104 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import finanzelogo from "../assets/logofigma.png";
 import PieChartPemasukan from '../chart/PieChartPemasukan';
 import PieChartPengeluaran from '../chart/PieChartPengeluaran';
 import { Line } from "react-chartjs-2";
 import Sidebar from '../includes/Sidebar';
+import axios from 'axios';
 
-const data = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+function Statistik() {
+
+  const [totalPemasukanArray, setTotalPemasukanArray] = useState([]);
+  const [totalPengeluaranArray, setTotalPengeluaranArray] = useState([]);
+
+  const [dataKeuangan, setDataKeuangan] = useState([]);
+
+  // console.log(dataKeuangan);
+  
+  useEffect(() => {
+    const ReadDatabase = async () => {
+      try {
+        const response = await axios.get("http://localhost:8087/datakeuangan");
+        const dataKeuangan = response.data;
+    
+        const bulan1 = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+    
+        const filterDataByMonth = (dataKeuangan, month) => {
+          return dataKeuangan.filter(data => {
+            const dataMonth = data.tanggal ? data.tanggal.split('-')[1] : null;
+            return dataMonth === month || dataMonth === null;
+          });
+        };
+    
+        const result = bulan1.map(month => {
+          const filteredData = filterDataByMonth(dataKeuangan, month);
+    
+          const pemasukanbulan1an = filteredData.filter(data => data.jenis === 'Pemasukan');
+          const Pengeluaranbulan1an = filteredData.filter(data => data.jenis === 'Pengeluaran');
+    
+          const totalPemasukan12 = pemasukanbulan1an.reduce((total, data) => total + parseInt(data.nilai), 0);
+          const totalPengeluaran2 = Pengeluaranbulan1an.reduce((total, data) => total + parseInt(data.nilai), 0);
+    
+          setTotalPemasukanArray(prevArray => [...prevArray, totalPemasukan12]);
+          setTotalPengeluaranArray(prevArray => [...prevArray, totalPengeluaran2]);
+    
+          return {
+            month: month,
+            totalPemasukan12: totalPemasukan12,
+            totalPengeluaran2: totalPengeluaran2,
+          };
+        });
+    
+        console.log(result);
+        console.log(totalPemasukanArray);
+        console.log(totalPengeluaranArray);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    
+    
+    ReadDatabase();
+  }, []);
+
+  const data = {
+    labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
     datasets: [
       {
         label: "Pemasukan",
-        data: [33, 53, 85, 41, 44, 65],
+        data: totalPemasukanArray,
         fill: true,
         backgroundColor: "rgba(75,192,192,0.2)",
         borderColor: "rgba(75,192,192,1)"
-      },
-      {
-        label: "Pengeluaran",
-        data: [33, 25, 35, 51, 54, 76],
-        fill: false,
-        borderColor: "#742774"
       }
+      // {
+      //   label: "Pengeluaran",
+      //   data: totalPengeluaranArray,
+      //   fill: false,
+      //   borderColor: "#742774"
+      // }
     ]
   };
 
 const data2 = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+  labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
     datasets: [
       {
-        label: "Keuntungan",
-        data: [33, 53, 85, 41, 44, 65],
+        label: "Pengeluran",
+        data: totalPengeluaranArray,
         fill: true,
         backgroundColor: "rgba(75,192,192,0.2)",
         borderColor: "rgba(75,192,192,1)"
-      },
-      {
-        label: "Kerugian",
-        data: [33, 25, 35, 51, 54, 76],
-        fill: false,
-        borderColor: "#742774"
       }
+      // {
+      //   label: "Kerugian",
+      //   data: [33, 25, 35, 51, 54, 76],
+      //   fill: false,
+      //   borderColor: "#742774"
+      // }
     ]
   };
 
-function Statistik() {
   return (
     <div className="flex min-h-screen flex-row bg-gray-100 text-gray-800 p-5">
         <Sidebar/>
@@ -54,22 +109,27 @@ function Statistik() {
             </div>
             <div>
                 <div className='mb-10 flex'>
-                    <PieChartPemasukan/>
-                    <div className='w-[32rem] px-5'>
+                    <div className='w-full px-5'>
                         <div>
                             <div className='font-Montserrat font-bold'>
                                 <div className="shadow-lg rounded-lg overflow-hidden">
                                     <div className="py-3 px-5 bg-gray-50">Line Chart</div>
-                                    <div className="p-1 h-60"><Line data={data} /></div>
+                                    <div className="p-1"><Line data={data} /></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className='flex'>
-                    <PieChartPengeluaran/>
+                <div className='mb-10 flex'>
                     <div className='w-full px-5'>
-                        <Line data={data2} />
+                        <div>
+                            <div className='font-Montserrat font-bold'>
+                                <div className="shadow-lg rounded-lg overflow-hidden">
+                                    <div className="py-3 px-5 bg-gray-50">Line Chart</div>
+                                    <Line data={data2} />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function Register() {
-  const [id, idchange] = useState("");
+  const [username, usernamechange] = useState("");
   const [nama, namachange] = useState("");
   const [email, emailchange] = useState("");
   const [password, passwordchange] = useState("");
@@ -13,7 +13,7 @@ function Register() {
   const validasi = () => {
     let isProses = true;
     let pesanError = 'Masukkan data dong!';
-    if (id == null || id == '') {
+    if (username == null || username == '') {
       isProses = false;
       pesanError += 'Username Anda'
     }
@@ -38,9 +38,9 @@ function Register() {
 
   const handleSubmit = (e) => {
       e.preventDefault();
-      let regobj = {id, nama, email, password};
+      let regobj = {username, nama, email, password};
       console.log(regobj);
-      fetch("http://localhost:8083/user", {
+      fetch("http://localhost:8087/users", {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(regobj)
@@ -62,7 +62,7 @@ function Register() {
           <div className='card-body'>
             <div className='mb-4'>
               <p className='font-Montserrat mb-2'>Username</p>
-              <input required value={id} onChange={e => idchange(e.target.value)} type="text" className='border w-full rounded-md px-2 h-10 border-blue-200'/>
+              <input required value={username} onChange={e => usernamechange(e.target.value)} type="text" className='border w-full rounded-md px-2 h-10 border-blue-200'/>
             </div>
             <div className='mb-4'>
               <p className='font-Montserrat mb-2'>Nama Lengkap</p>

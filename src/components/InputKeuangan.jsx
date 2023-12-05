@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
-import DatePicker from "react-datepicker";
 
 function InputKeuangan() {
   const navigate = useNavigate();
@@ -10,7 +9,6 @@ function InputKeuangan() {
   const [caridata, setCariData] = useState([]);
   
   const [id, idchange] = useState("");
-  // const [tanggal, tanggalchange] = useState("");
   const [kategori, kategorichange] = useState("");
   const [keterangan, keteranganchange] = useState("");
   const [nilai, nilaichange] = useState("");
@@ -54,7 +52,7 @@ function InputKeuangan() {
       jenis: jenistransaksi,
     };
   
-    fetch("http://localhost:8087/datakeuangan", {
+    fetch(`http://localhost:8087/datakeuangan`, {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(regobj)
@@ -115,8 +113,7 @@ function InputKeuangan() {
           <div className='flex mt-2 justify-between'> 
             <div className='px-2'>
               <p className='text-lg font-medium'>Tanggal Transaksi</p>                            
-              {/* <input required type="text" placeholder='22/08/2023' value={tanggal} onChange={e => tanggalchange(e.target.value)}  className='border w-56 rounded-md px-2 h-10 text-sm font-medium border-blue-200'/> */}
-              <DatePicker showIcon selected={tanggal} onChange={(date) => settanggal(date)} />
+              <input required type="date" value={tanggal} onChange={e => settanggal(e.target.value)}  className='border w-56 rounded-md px-2 h-10 text-sm font-medium border-blue-200'/>
             </div>
             <div className='px-2'>
               <p className='text-lg font-medium'>Keterangan Transaksi</p>
