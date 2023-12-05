@@ -4,32 +4,66 @@ import React, { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Stack from '@mui/material/Stack';
+import { LineChart } from '@mui/x-charts/LineChart';
 
 function RekapInvestasi() {
 
-   const [dataSahamIDX, setdataSahamIDX] = useState([]);
+   const [DataInvestasi, setDataInvestasi] = useState([]);
+   
+   useEffect(() => {
+      ReadDatabase();
+      }, []);
 
-  const fetchDataSaham = async () => {
-    try {
-      const response = await axios.get("https://api.goapi.io/stock/idx/companies?api_key=9a33be32-fdc9-5985-fb25-1e68eca9");
-      const responseDatasaham = response.data;
+      const ReadDatabase = async () => {
+      try {
+         const response = await axios.get("http://localhost:8087/inputinvestasi");
+         const sortedData = response.data.sort((a, b) => b.persentase - a.persentase);
+         const top10Data = sortedData.slice(0,10);
+         setDataInvestasi(top10Data);
+      } catch (error) {
+         console.error("Error reading database:", error);
+      }
+   };
 
-      const datakombinasi = responseDatasaham.data.results.map(company => ({
-        symbol: company.symbol,
-        nama: company.name,
-        gabungan: `${company.symbol} - ${company.name}`,
-      }));
+   const [totalGain, setTotalGain] = useState([]);
 
-      setdataSahamIDX(datakombinasi);
-      console.log(datakombinasi);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+   useEffect(() => {
+   const ReadDataSaham = async () => {
+      try {
+         const response = await axios.get("http://localhost:8087/inputinvestasi");
+         const DataSaham = response.data;
 
-  useEffect(() => {
-    fetchDataSaham();
-  }, []);
+         const bulan1 = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+
+         const result = bulan1.map(month => {
+         const filteredData = DataSaham.filter(data => {
+            const dataMonth = data.durasiinvestasi ? data.durasiinvestasi.split('-')[1] : null;
+            return dataMonth === month || dataMonth === null;
+         });
+
+         const totalGainer = filteredData.reduce((total, data) => total + parseInt(data.persentase), 0);
+         const averageGainer = totalGainer / filteredData.length;
+
+         return {
+            month: month,
+            averageGain: averageGainer,
+         };
+         });
+
+         setTotalGain(result);
+         // console.log(result);
+      } catch (error) {
+         console.error("Error fetching data:", error);
+      }
+   };
+
+   ReadDataSaham();
+   }, []);
+
+   const averageGainArray = totalGain.map(item => item.averageGain);
+   const totalGainAll = averageGainArray.reduce((total, averageGain) => total + parseInt(averageGain), 0);
+   // console.log(totalGainAll);
+
 
   return (
     <div>
@@ -39,21 +73,29 @@ function RekapInvestasi() {
       <div id="main-content" className="h-full w-full relative overflow-y-auto">
          <main>
             <div className="px-4">
-               <div className="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
-                  <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
+               <div className="w-full grid grid-cols-1 xl:grid-cols-2 xl:gap-4 2xl:grid-cols-2 gap-4">
+                  <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-1">
                      <div className="flex items-center justify-between mb-4">
                         <div className="flex-shrink-0">
-                           <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">$45,385</span>
-                           <h3 className="text-base font-normal text-gray-500">Sales this week</h3>
+                           <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">Statistik Portofoliomu</span>
+                           <h3 className="text-base font-normal text-gray-500">Berdasarkan apa yang Anda inputkan</h3>
                         </div>
                         <div className="flex items-center justify-end flex-1 text-green-500 text-base font-bold">
-                           12.5%
-                           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                              <path fill-rule="evenodd" d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                           </svg>
+                        {totalGainAll}%
                         </div>
                      </div>
-                     <div id="main-chart"></div>
+                     <div>
+                     <LineChart
+                           xAxis={[{ data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] }]}
+                           series={[
+                           {
+                              data: averageGainArray,
+                           },
+                           ]}
+                           width={550}
+                           height={550}
+                        />
+                     </div>
                   </div>
                   <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                      <div className="mb-4 flex items-center justify-between">
@@ -81,83 +123,19 @@ function RekapInvestasi() {
                                        </tr>
                                     </thead>
                                     <tbody className="bg-white">
-                                       <tr>
+                                       {DataInvestasi.map((data, key) => (
+                                       <tr key={key}>
                                           <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                                             Payment from <span className="font-semibold">Bonnie Green</span>
+                                             <span className="font-semibold">{data.tickernamaperusahaan}</span>
                                           </td>
                                           <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                             Apr 23 ,2021
+                                             {data.durasiinvestasi}
                                           </td>
                                           <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                             $2300
+                                             {data.persentase} %
                                           </td>
                                        </tr>
-                                       <tr className="bg-gray-50">
-                                          <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
-                                             Payment refund to <span className="font-semibold">#00910</span>
-                                          </td>
-                                          <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                             Apr 23 ,2021
-                                          </td>
-                                          <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                             -$670
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                                             Payment failed from <span className="font-semibold">#087651</span>
-                                          </td>
-                                          <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                             Apr 18 ,2021
-                                          </td>
-                                          <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                             $234
-                                          </td>
-                                       </tr>
-                                       <tr className="bg-gray-50">
-                                          <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
-                                             Payment from <span className="font-semibold">Lana Byrd</span>
-                                          </td>
-                                          <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                             Apr 15 ,2021
-                                          </td>
-                                          <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                             $5000
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                                             Payment from <span className="font-semibold">Jese Leos</span>
-                                          </td>
-                                          <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                             Apr 15 ,2021
-                                          </td>
-                                          <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                             $2300
-                                          </td>
-                                       </tr>
-                                       <tr className="bg-gray-50">
-                                          <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
-                                             Payment from <span className="font-semibold">THEMESBERG LLC</span>
-                                          </td>
-                                          <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                             Apr 11 ,2021
-                                          </td>
-                                          <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                             $560
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                                             Payment from <span className="font-semibold">Lana Lysle</span>
-                                          </td>
-                                          <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                             Apr 6 ,2021
-                                          </td>
-                                          <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                             $1437
-                                          </td>
-                                       </tr>
+                                       ))}
                                     </tbody>
                                  </table>
                               </div>
@@ -170,42 +148,51 @@ function RekapInvestasi() {
                   <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                      <div className="flex items-center">
                         <div className="flex-shrink-0">
-                           <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">2,340</span>
-                           <h3 className="text-base font-normal text-gray-500">New products this week</h3>
+                           <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">Top Gainer</span>
+                           {DataInvestasi.length > 0 && (
+                           <h3 className="text-base font-normal text-gray-500">
+                              {DataInvestasi[0].tickernamaperusahaan}
+                           </h3>
+                           )}
                         </div>
+                        {DataInvestasi.length > 0 && (
                         <div className="ml-5 w-0 flex items-center justify-end flex-1 text-green-500 text-base font-bold">
-                           14.6%
+                           {DataInvestasi[0].persentase}%
                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                               <path fill-rule="evenodd" d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                            </svg>
                         </div>
+                        )}
                      </div>
                   </div>
                   <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                      <div className="flex items-center">
                         <div className="flex-shrink-0">
-                           <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">5,355</span>
-                           <h3 className="text-base font-normal text-gray-500">Visitors this week</h3>
+                           <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">Top Loser</span>
+                           {DataInvestasi.length > 0 && (
+                              <h3 className="text-base font-normal text-gray-500">
+                                 {DataInvestasi[DataInvestasi.length - 1].tickernamaperusahaan}
+                              </h3>
+                              )}
                         </div>
-                        <div className="ml-5 w-0 flex items-center justify-end flex-1 text-green-500 text-base font-bold">
-                           32.9%
-                           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                              <path fill-rule="evenodd" d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                           </svg>
-                        </div>
-                     </div>
-                  </div>
-                  <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-                     <div className="flex items-center">
-                        <div className="flex-shrink-0">
-                           <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">385</span>
-                           <h3 className="text-base font-normal text-gray-500">User signups this week</h3>
-                        </div>
+                        {DataInvestasi.length > 0 && (
                         <div className="ml-5 w-0 flex items-center justify-end flex-1 text-red-500 text-base font-bold">
-                           -2.7%
+                           {DataInvestasi[DataInvestasi.length - 1].persentase}%
                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                               <path fill-rule="evenodd" d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                            </svg>
+                        </div>
+                        )}
+                     </div>
+                  </div>
+                  <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+                     <div className="flex items-center">
+                        <div className="flex-shrink-0">
+                           <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">Nilai Portofolio</span>
+                           <h3 className="text-base font-normal text-gray-500">Kerja bagus! 😉</h3>
+                        </div>
+                        <div className="ml-5 w-0 flex items-center justify-end flex-1 text-green-500 text-base font-bold">
+                        {totalGainAll}%
                         </div>
                      </div>
                   </div>

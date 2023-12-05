@@ -53,7 +53,7 @@
   "inputinvestasi": [
     {
       "id": 14435,
-      "durasiinvestasi": "3 Bulan",
+      "durasiinvestasi": "2023-01-02",
       "tickernamaperusahaan": "ADMR - PT Adaro Minerals Indonesia Tbk.",
       "lot": 10,
       "hargabeli": 20000,
@@ -62,7 +62,7 @@
     },
     {
       "id": 29324,
-      "durasiinvestasi": "2 Bulan",
+      "durasiinvestasi": "2023-02-02",
       "tickernamaperusahaan": "AALI - Astra Agro Lestari Tbk.",
       "lot": 20,
       "hargabeli": 200,
@@ -71,8 +71,8 @@
     },
     {
       "id": 35619,
-      "durasiinvestasi": "2 Bulan",
-      "tickernamaperusahaan": "BCA - Bank Central Asia Tbk.",
+      "durasiinvestasi": "2023-03-02",
+      "tickernamaperusahaan": "BBCA - Bank Central Asia Tbk.",
       "lot": 10,
       "hargabeli": 100,
       "hargajual": 125,
@@ -80,7 +80,7 @@
     },
     {
       "id": 42345,
-      "durasiinvestasi": "2 Bulan",
+      "durasiinvestasi": "2023-04-02",
       "tickernamaperusahaan": "BBCA - PT Bank Central Asia Tbk.",
       "lot": 10,
       "hargabeli": 200,
@@ -89,7 +89,7 @@
     },
     {
       "id": 51234,
-      "durasiinvestasi": "1 Bulan",
+      "durasiinvestasi": "2023-05-02",
       "tickernamaperusahaan": "BMRI - Bank Mandiri Tbk.",
       "lot": 20,
       "hargabeli": 100,
@@ -98,7 +98,7 @@
     },
     {
       "id": 66781,
-      "durasiinvestasi": "2 Bulan",
+      "durasiinvestasi": "2023-06-02",
       "tickernamaperusahaan": "BBRI - Bank Rakyat Indonesia Tbk.",
       "lot": 20,
       "hargabeli": 1000,
@@ -107,7 +107,7 @@
     },
     {
       "id": 75489,
-      "durasiinvestasi": "1 Bulan",
+      "durasiinvestasi": "2023-07-02",
       "tickernamaperusahaan": "ABBA - Mahaka Media Tbk.",
       "lot": 5,
       "hargabeli": 500,
@@ -116,7 +116,7 @@
     },
     {
       "id": 80198,
-      "durasiinvestasi": "3 Bulan",
+      "durasiinvestasi": "2023-08-02",
       "tickernamaperusahaan": "INDF - Indofood Sukses Makmur Tbk.",
       "lot": 15,
       "hargabeli": 1500,
@@ -125,7 +125,7 @@
     },
     {
       "id": 91290,
-      "durasiinvestasi": "2 Bulan",
+      "durasiinvestasi": "2023-09-02",
       "tickernamaperusahaan": "UNTR - United Tractors Tbk.",
       "lot": 25,
       "hargabeli": 250,
@@ -134,7 +134,7 @@
     },
     {
       "id": 12780,
-      "durasiinvestasi": "1 Bulan",
+      "durasiinvestasi": "2023-10-02",
       "tickernamaperusahaan": "PGAS - Perusahaan Gas Negara Tbk.",
       "lot": 12,
       "hargabeli": 1200,
@@ -143,7 +143,7 @@
     },
     {
       "id": 11034,
-      "durasiinvestasi": "3 Bulan",
+      "durasiinvestasi": "2023-11-02",
       "tickernamaperusahaan": "TLKM - Telekomunikasi Indonesia Tbk.",
       "lot": 18,
       "hargabeli": 1800,
@@ -152,7 +152,7 @@
     },
     {
       "id": 12123,
-      "durasiinvestasi": "2 Bulan",
+      "durasiinvestasi": "2023-12-02",
       "tickernamaperusahaan": "EXCL - XL Axiata Tbk.",
       "lot": 30,
       "hargabeli": 300,
@@ -161,7 +161,7 @@
     },
     {
       "id": 13782,
-      "durasiinvestasi": "2 Bulan",
+      "durasiinvestasi": "2023-01-02",
       "tickernamaperusahaan": "ASII - Astra International Tbk.",
       "lot": 15,
       "hargabeli": 150,
@@ -170,7 +170,7 @@
     },
     {
       "id": 14344,
-      "durasiinvestasi": "1 Bulan",
+      "durasiinvestasi": "2023-02-02",
       "tickernamaperusahaan": "CPIN - Charoen Pokphand Indonesia Tbk.",
       "lot": 8,
       "hargabeli": 800,
@@ -179,7 +179,7 @@
     },
     {
       "id": 15110,
-      "durasiinvestasi": "2 Bulan",
+      "durasiinvestasi": "2023-03-02",
       "tickernamaperusahaan": "ICBP - Indofood CBP Sukses Makmur Tbk.",
       "lot": 22,
       "hargabeli": 2200,
@@ -188,7 +188,7 @@
     },
     {
       "id": 16231,
-      "durasiinvestasi": "3 Bulan",
+      "durasiinvestasi": "2023-04-02",
       "tickernamaperusahaan": "BRPT - Barito Pacific Tbk.",
       "lot": 10,
       "hargabeli": 1000,
@@ -197,7 +197,7 @@
     },
     {
       "id": 17772,
-      "durasiinvestasi": "1 Bulan",
+      "durasiinvestasi": "2023-05-02",
       "tickernamaperusahaan": "BBCA - PT Bank Central Asia Tbk.",
       "lot": 15,
       "hargabeli": 150,
@@ -206,7 +206,7 @@
     },
     {
       "id": 18129,
-      "durasiinvestasi": "2 Bulan",
+      "durasiinvestasi": "2023-06-02",
       "tickernamaperusahaan": "INCO - Vale Indonesia Tbk.",
       "lot": 25,
       "hargabeli": 2500,
@@ -215,15 +215,16 @@
     },
     {
       "id": 19900,
-      "durasiinvestasi": "2 Bulan",
+      "durasiinvestasi": "2023-07-02",
       "tickernamaperusahaan": "WEGE - Wijaya Karya Gedung Tbk.",
       "lot": 20,
       "hargabeli": 2000,
-      "hargajual": 2050
+      "hargajual": 2050,
+      "persentase": 8
     },
     {
       "id": 10022,
-      "durasiinvestasi": "3 Bulan",
+      "durasiinvestasi": "2023-08-02",
       "tickernamaperusahaan": "ADMR - PT Adaro Minerals Indonesia Tbk.",
       "lot": 10,
       "hargabeli": 20000,

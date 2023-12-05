@@ -12,8 +12,6 @@ function Statistik() {
   const [totalPengeluaranArray, setTotalPengeluaranArray] = useState([]);
 
   const [dataKeuangan, setDataKeuangan] = useState([]);
-
-  // console.log(dataKeuangan);
   
   useEffect(() => {
     const ReadDatabase = async () => {
@@ -49,9 +47,9 @@ function Statistik() {
           };
         });
     
-        console.log(result);
-        console.log(totalPemasukanArray);
-        console.log(totalPengeluaranArray);
+        // console.log(result);
+        // console.log(totalPemasukanArray);
+        // console.log(totalPengeluaranArray);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
