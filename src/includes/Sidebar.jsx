@@ -7,7 +7,7 @@ function Sidebar() {
     <>
         <div className="sidebar justify-end w-1/4 rounded-xl -translate-x-full transform bg-blue-700 p-3 transition-transform duration-150 ease-in md:translate-x-0 md:shadow-md">
             <div className="my-4 w-full text-center">
-                <img src={finanzelogo} alt="logo" />
+                <img className='px-5 flex mx-auto justify-center' src={finanzelogo} alt="logo" />
             </div>
             <div className="pt-4 pb-8">
                 <ul className="space-y-2">
