@@ -101,7 +101,7 @@ function InputInvestasi() {
     <div className="flex min-h-screen flex-row bg-gray-100 text-gray-800 p-5">
       <Sidebar/>
       <main className='main w-full flex-col p-4 transition-all duration-150 ease-in md:ml-0'>
-        <div className='px-2  '>
+        <div className='px-2'>
           <h1 className='font-Epilogue font-bold text-2xl'>Input Data Investasi</h1>
         </div>
         <div>
@@ -116,18 +116,17 @@ function InputInvestasi() {
                   Masukkan kode ticker atau nama perusahaan
                 </label>
                 <select
-  id='perusahaan'
-  className='border rounded-md px-2 h-10 text-sm font-medium border-blue-200'
-  value={tickernamaperusahaan}
-  onChange={(e) => tickernamaperusahaanchange(e.target.value)}
->
-  {dataSahamIDX.map((option) => (
-    <option key={option.gabungan} value={option.gabungan}>
-      {option.gabungan}
-    </option>
-  ))}
-</select>
-
+                  id='perusahaan'
+                  className='border rounded-md px-2 h-10 text-sm font-medium border-blue-200'
+                  value={tickernamaperusahaan}
+                  onChange={(e) => tickernamaperusahaanchange(e.target.value)}
+                >
+                  {dataSahamIDX.map((option) => (
+                    <option key={option.gabungan} value={option.gabungan}>
+                      {option.gabungan}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div className='px-2'>
                 <p className='text-lg font-medium'>Jumlah Lot</p>
@@ -160,30 +159,30 @@ function InputInvestasi() {
             <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
                 <thead className="bg-gray-50">
                     <tr>
-                      <th scope="col" className="px-6 py-4 font-medium text-gray-900">Durasi Transaksi</th>
+                      <th scope="col" className="px-6 py-4 font-medium text-gray-900">Tanggal Transaksi</th>
                       <th scope="col" className="px-6 py-4 font-medium text-gray-900">Jumlah Lot</th>
                       <th scope="col" className="px-6 py-4 font-medium text-gray-900">Harga Beli</th>
                       <th scope="col" className="px-6 py-4 font-medium text-gray-900">Harga Jual</th>
                       <th scope="col" className="px-6 py-4 font-medium text-gray-900">Persentase</th>
                     </tr>
                 </thead>
-                {/* {datakombinasi.data.data} */}
                 <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-                    <tr className="hover:bg-gray-50">
+                {datakeuangan.map((data, index) => (
+                    <tr key={index} className="hover:bg-gray-50">
                         <th className="gap-3 px-6 py-4 font-normal text-gray-900">
                             <div className="text-sm">
-                                <div className="font-medium text-gray-700">2 Bulan</div>
+                                <div className="font-medium text-gray-700">{data.durasiinvestasi}</div>
                             </div>
                         </th>
                         <td className="px-6 py-4">
-                            10 Lot
+                        {data.lot} Lot
                         </td>
                         <td className="px-6 py-4">
                         <div className="flex gap-2">
                             <span
                                 className="inline-flex items-center gap-1 rounded-full bg-violet-50 px-2 py-1 text-xs font-semibold text-violet-600"
                             >
-                                Rp 10000
+                                Rp {data.hargabeli}
                             </span>
                             </div>
                         </td>
@@ -192,7 +191,7 @@ function InputInvestasi() {
                             <span
                                 className="inline-flex items-center gap-1 rounded-full bg-violet-50 px-2 py-1 text-xs font-semibold text-violet-600"
                             >
-                                Rp 10000
+                                Rp {data.hargajual}
                             </span>
                             </div>
                         </td>
@@ -200,6 +199,7 @@ function InputInvestasi() {
                             10 %
                         </td>
                     </tr>
+                ))}
                 </tbody>
             </table>
         </div>

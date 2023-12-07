@@ -93,7 +93,7 @@ function Dashboard() {
 
   return (
     <>
-    <div className="flex min-h-screen flex-row bg-gray-100 text-gray-800 p-5">
+     <div className="flex min-h-screen flex-row bg-gray-100 text-gray-800 p-5">
         <Sidebar/>
         <main className="main w-5/6 flex-col px-4 transition-all duration-150 ease-in md:ml-0">
             <div className="h-full items-center justify-center text-start text-3xl font-bold">

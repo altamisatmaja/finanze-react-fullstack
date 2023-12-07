@@ -77,8 +77,8 @@ function RekapInvestasi() {
                   <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-1">
                      <div className="flex items-center justify-between mb-4">
                         <div className="flex-shrink-0">
-                           <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">Statistik Portofoliomu</span>
-                           <h3 className="text-base font-normal text-gray-500">Berdasarkan apa yang Anda inputkan</h3>
+                           <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">Statistik Portofoliomu 📈💸</span>
+                           <h3 className="text-base font-normal text-gray-500">Tracking portofolio sahammu year-to-date</h3>
                         </div>
                         <div className="flex items-center justify-end flex-1 text-green-500 text-base font-bold">
                         {totalGainAll}%
@@ -92,15 +92,15 @@ function RekapInvestasi() {
                               data: averageGainArray,
                            },
                            ]}
-                           width={550}
-                           height={550}
+                           width={650}
+                           height={650}
                         />
                      </div>
                   </div>
                   <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                      <div className="mb-4 flex items-center justify-between">
                         <div>
-                           <h3 className="text-xl font-bold text-gray-900 mb-2">Rekap Investing</h3>
+                           <h3 className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">Rekap Investing 🤩</h3>
                            <span className="text-base font-normal text-gray-500">List berdasarkan top gainers</span>
                         </div>
                      </div>
@@ -148,7 +148,7 @@ function RekapInvestasi() {
                   <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                      <div className="flex items-center">
                         <div className="flex-shrink-0">
-                           <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">Top Gainer</span>
+                           <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">Top Gainer 🤑</span>
                            {DataInvestasi.length > 0 && (
                            <h3 className="text-base font-normal text-gray-500">
                               {DataInvestasi[0].tickernamaperusahaan}
@@ -168,7 +168,7 @@ function RekapInvestasi() {
                   <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                      <div className="flex items-center">
                         <div className="flex-shrink-0">
-                           <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">Top Loser</span>
+                           <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">Top Loser 🥵</span>
                            {DataInvestasi.length > 0 && (
                               <h3 className="text-base font-normal text-gray-500">
                                  {DataInvestasi[DataInvestasi.length - 1].tickernamaperusahaan}
@@ -188,7 +188,7 @@ function RekapInvestasi() {
                   <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                      <div className="flex items-center">
                         <div className="flex-shrink-0">
-                           <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">Nilai Portofolio</span>
+                           <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">Nilai Portofolio 📊</span>
                            <h3 className="text-base font-normal text-gray-500">Kerja bagus! 😉</h3>
                         </div>
                         <div className="ml-5 w-0 flex items-center justify-end flex-1 text-green-500 text-base font-bold">

@@ -1,4 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import logo from "../assets/logofigma.png";
+import gambar from "./../assets/img/pichero.png";
+import dompet from "./../assets/img/dompet.png";
+import cetak from "./../assets/img/cetak.png";
+import koin from "./../assets/img/koin.png";
+import div from "./../assets/img/div.png";
+import mac from "./../assets/img/mac.png";
+import { useNavigate, Link } from 'react-router-dom';
 
 function Beranda() {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -10,145 +18,332 @@ function Beranda() {
   return (
     <>
       <header>
-        <div className="w-full">
-          <nav className="bg-white shadow-lg">
-            <div className="md:flex items-center justify-between py-2 px-8 md:px-12">
-              <div className="flex justify-between items-center">
-                <div className="text-2xl font-bold text-gray-800 md:text-3xl">
-                  <a href="#">Brand</a>
-                </div>
-                <div className="md:hidden">
-                  <button
-                    type="button"
-                    className="block text-gray-800 hover:text-gray-700 focus:text-gray-700 focus:outline-none"
-                    onClick={toggleMenu}
+        {/* navbar*/}
+        <div className="relative w-full">
+          <nav className="fixed z-10 w-full bg-white md:absolute p-5 md:bg-transparent">
+            <div className="container m-auto px-2 py-2 bg-blue-600 rounded-3xl md:px-12 lg:px-7">
+              <div className="flex flex-wrap items-center justify-between py-3 gap-6 md:py-4 md:gap-0">
+                <div className="w-full px-6 flex justify-between lg:w-max md:px-0">
+                  <a
+                    href="#"
+                    aria-label="logo"
+                    className="flex space-x-2 items-center"
                   >
-                    <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
-                      <path
-                        className={!isMenuOpen ? '' : 'hidden'}
-                        d="M16.24 14.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 0 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12l2.83 2.83z"
-                      />
-                      <path
-                        className={isMenuOpen ? '' : 'hidden'}
-                        d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
-                      />
-                    </svg>
+                    <img
+                      src={logo}
+                      className="w-1/2"
+                      alt="finanze logo"
+                      width="144"
+                      height="133"
+                    />
+                  </a>
+
+                  <button
+                    aria-label="humburger"
+                    id="hamburger"
+                    className="relative w-10 h-10 -mr-2 lg:hidden"
+                  >
+                    <div
+                      aria-hidden="true"
+                      id="line"
+                      className="inset-0 w-6 h-0.5 m-auto rounded bg-yellow-900 transtion duration-300"
+                    ></div>
+                    <div
+                      aria-hidden="true"
+                      id="line2"
+                      className="inset-0 w-6 h-0.5 mt-2 m-auto rounded bg-yellow-900 transtion duration-300"
+                    ></div>
                   </button>
                 </div>
-              </div>
-              <div className={`md:flex ${isMenuOpen ? 'block' : 'hidden'} flex-grid md:flex-row`}>
-                <a href="#" className="text-gray-800 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2">
-                  Beranda
-                </a>
-                <a href="#" className="text-gray-800 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2">
-                  Laporan
-                </a>
-                <a href="#" className="text-gray-800 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2">
-                  Dashboard
-                </a>
-                <a href="#" className="text-gray-800 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2">
-                  Rekap Investasi
-                </a>
-                <a href="#" className="text-gray-800 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2">
-                  Start Now
-                </a>
+
+                {/* hero section */}
+                <div className="hidden w-full lg:flex flex-wrap justify-end items-center space-y-6 p-6 rounded-xl bg-white md:space-y-0 md:p-0 md:flex-nowrap md:bg-transparent lg:w-7/12">
+                  <div className="text-white lg:pr-4">
+                    <ul className="space-y-6 tracking-wide font-medium text-lg md:flex md:space-y-0">
+                      <Link to={'/'}>
+                      <li>
+                        <a
+                          href="#"
+                          className="block md:px-4 transition hover:text-yellow-300"
+                        >
+                          <span>Beranda</span>
+                        </a>
+                      </li>
+                      </Link>
+                      <Link to={'/laporan'}>
+                      <li>
+                        <a
+                          href="#"
+                          className="block md:px-4 transition hover:text-yellow-300"
+                        >
+                          <span>Laporan</span>
+                        </a>
+                      </li>
+                      </Link>
+                      <Link to={'/dashboard'}>
+                      <li>
+                        <a
+                          href="#"
+                          className="block md:px-4 transition hover:text-yellow-300"
+                        >
+                          <span>Dashboard</span>
+                        </a>
+                      </li>
+                      </Link>
+                      <Link to={'/rekapinvestasi'}>
+                      <li>
+                        <a
+                          href="#"
+                          className="block md:px-4 transition hover:text-yellow-300"
+                        >
+                          <span>Rekap Investasi</span>
+                        </a>
+                      </li>
+                      </Link>
+                      <Link to={'/login'}>
+                      <li>
+                        <a
+                          href="#"
+                          className="block md:px-4 transition hover:text-yellow-300"
+                        >
+                          <span className="border-solid border-yellow-300 rounded-xl border-2 px-8 py-2">Login</span>
+                        </a>
+                      </li>
+                      </Link>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </nav>
-            <div className="flex bg-white" style={{ height: '600px' }}>
-                <div className="flex items-center text-center lg:text-left px-8 md:px-12 lg:w-1/2">
-                    <div>
-                        <h2 className="text-3xl font-semibold text-gray-800 md:text-4xl">Build Your New <span className="text-indigo-600">Idea</span></h2>
-                        <p className="mt-2 text-sm text-gray-500 md:text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis commodi cum cupiditate ducimus, fugit harum id necessitatibus odio quam quasi, quibusdam rem tempora voluptates. Cumque debitis dignissimos id quam vel!</p>
-                        <div className="flex justify-center lg:justify-start mt-6">
-                            <a className="px-4 py-3 bg-gray-900 text-gray-200 text-xs font-semibold rounded hover:bg-gray-800" href="#">Get Started</a>
-                            <a className="mx-4 px-4 py-3 bg-gray-300 text-gray-900 text-xs font-semibold rounded hover:bg-gray-400" href="#">Learn More</a>
-                        </div>
-                    </div>
+          <div className="relative bg-yellow-50 min-h-screen">
+            <div className="container m-auto px-6 pt-32 md:px-12 lg:pt-[4.8rem] lg:px-7">
+              <div className="flex items-center flex-wrap px-2 md:px-0">
+                <div className="relative lg:w-6/12 lg:py-24 xl:py-32">
+                  <h1 className="font-bold text-4xl text-slate-900 md:text-6xl items-center lg:w-10/11">
+                    Kendalikan uang anda, Wujudkan impian anda
+                  </h1>
+                  <p className="mt-8 text-gray-700 text-2xl lg:w-10/12">
+                    Keuangan adalah hal yang krusial dalam hidup kita. Manage
+                    your money and enjoy your long life with us
+                  </p>
+                  <div className="text-white mt-4 lg:pr-4">
+                    <ul className="space-y-6 tracking-wide font-medium text-sm md:flex md:space-y-0">
+                      <li>
+                        <a
+                          href="#"
+                          className="block text-xl md:px-4 rounded-lg bg-blue-600 py-3 px-5 transition hover:text-yellow-300"
+                        >
+                          <span>Beranda</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          className="block text-xl md:px-4 rounded-lg ml-5 text-slate-900 bg-white border-2 border-solid border-slate-800 py-3 px-5 transition hover:text-yellow-300"
+                        >
+                          <span>Dashboard</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <div className="hidden lg:block lg:w-1/2" style={{ clipPath: 'polygon(10% 0, 100% 0%, 100% 100%, 0 100%)' }}>
-                    <div className="h-full object-cover" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80)' }}>
-                        <div className="h-full bg-black opacity-25"></div>
-                    </div>
+                <div className="ml-auto -mb-24 lg:-mb-56 lg:w-6/12">
+                  <img
+                    src={gambar}
+                    className="relative"
+                    alt="food illustration"
+                    loading="lazy"
+                    width="4500"
+                    height="4500"
+                  />
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </header>
-    <section>
-        <div className="bg-blue-700 text-white py-8">
-            <div className="container mx-auto flex flex-col items-start md:flex-row my-12 md:my-24">
-            <div className="flex flex-col w-full sticky md:top-36 lg:w-1/3 mt-2 md:mt-12 px-8">
-                <p className="ml-2 text-yellow-300 uppercase tracking-loose">Working Process</p>
-                <p className="text-3xl md:text-4xl leading-normal md:leading-relaxed mb-2">Working Process of Fest</p>
-                <p className="text-sm md:text-base text-gray-50 mb-4">
-                Here's your guide to the tech fest 2021 process. Go through all the steps to know the exact process of the
-                fest.
+      </header>
+
+      {/* beda section */}
+      <div class="antialiased w-full h-full bg-white text-gray-400 font-inter p-10">
+        <div class="container px-4 mx-auto">
+          <div>
+            <div id="title" class="text-center my-10 w-1/2 mx-auto">
+              <h1 class="font-bold text-6xl text-black">
+                What our customers say about us ?
+              </h1>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-evenly gap-2 pt-10">
+              <div
+                id="plan"
+                class="rounded-2xl bg-gray-100 text-center px-5 overflow-hidden w-3/4 transform hover:shadow-2xl shadow-xl hover:scale-105 transition duration-200 ease-in"
+              >
+                <img src={dompet} alt="dompet" className="mx-auto"/>
+                <h3 class="font-bold text-slate-800 text-2xl mt-2">
+                  Melacak Keuanganmu!
+                </h3>
+                <div id="content" class="">
+                  <div id="contain" class="leading-8 mb-10 text-lg text-slate-800 font-regular">
+                    <ul>
+                      <li>
+                        Track your savings and build better spending habbits
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                id="plan"
+                class="rounded-2xl bg-gray-100 text-center px-5 overflow-hidden w-3/4 transform hover:shadow-2xl shadow-xl hover:scale-105 transition duration-200 ease-in"
+              >
+                <img src={cetak} alt="dompet" className="mx-auto"/>
+                <h3 class="font-bold text-slate-800 text-2xl mt-2">
+                Teman Keuanganmu!
+                </h3>
+                <div id="content" class="">
+                  <div id="contain" class="leading-8 mb-10 text-lg text-slate-800 font-regular">
+                    <ul>
+                      <li>
+                      Accomplish your savings goals and investment goals
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                id="plan"
+                class="rounded-2xl bg-gray-100 text-center px-5 overflow-hidden w-3/4 transform hover:shadow-2xl shadow-xl hover:scale-105 transition duration-200 ease-in"
+              >
+                <img src={koin} alt="dompet" className="mx-auto"/>
+                <h3 class="font-bold text-slate-800 text-2xl mt-2">
+                  Rekap Investasi!
+                </h3>
+                <div id="content" class="">
+                  <div id="contain" class="leading-8 mb-10 text-lg text-slate-800 font-regular">
+                    <ul>
+                      <li>
+                      Redeem rewards when you accomplish your savings goals
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section>
+        <div className="bg-white-700 text-white py-8">
+          <div className="container mx-auto my-10 md:my-14 flex items-center justify-center">
+            <div className="flex items-center justify-center bg-blue-600 rounded-lg shadow-xl h-[30.41rem] overflow-y-hidden w-full">
+              <div className="flex-grow relative text-left flex flex-col items-start p-8">
+                <p className="text-3xl font-semibold text-white md:text-4xl mb-2">
+                  Raih tujuan keuanganmu
                 </p>
-                <a href="#"
-                className="bg-transparent mr-auto hover:bg-yellow-300 text-yellow-300 hover:text-white rounded shadow hover:shadow-lg py-2 px-4 border border-yellow-300 hover:border-transparent">
-                Explore Now</a>
+                <p className="text-3xl font-semibold text-white md:text-4xl mb-2">
+                  bersama kami!
+                </p>
+                <p className="text-lg font-light text-white mb-1">
+                  Lorem ipsum dolor sit amet, consectetur. nulla suspendisse
+                  tortor aene.
+                </p>
+                <p className="text-lg font-light text-white mb-1">
+                  Elit. Feugiat nulla suspendisse tortor aene.
+                </p>
+                <a
+                  href="#"
+                  className="inline-block px-6 py-3 border border-white border-solid text-white text-base font-semibold rounded-full transition duration-300 hover:bg-white hover:text-blue-600 hover:border-white mt-4"
+                >
+                  Start Now
+                </a>
+              </div>
+              <img
+                className="absolute right-0 pr-20 pb-16"
+                src={div}
+                alt="Div"
+              />
             </div>
-            <div className="ml-0 md:ml-12 lg:w-2/3 sticky">
-                <div className="container mx-auto w-full h-full">
-                <div className="relative wrap overflow-hidden p-10 h-full">
-                    <div className="border-2-2 border-yellow-555 absolute h-full border"
-                    style={{ right: '50%', border: '2px solid #FFC100', borderRadius: '1%' }}                    ></div>
-                    <div className="border-2-2 border-yellow-555 absolute h-full border"
-                    style={{ left: '50%', border: '2px solid #FFC100', borderRadius: '1%' }}                    ></div>
-                    <div className="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
-                    <div className="order-1 w-5/12"></div>
-                    <div className="order-1 w-5/12 px-1 py-4 text-right">
-                        <p className="mb-3 text-base text-yellow-300">1-6 May, 2021</p>
-                        <h4 className="mb-3 font-bold text-lg md:text-2xl">Registration</h4>
-                        <p className="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
-                        Pick your favourite event(s) and register in that event by filling the form corresponding to that
-                        event. Its that easy :
-                        </p>
-                    </div>
-                    </div>
-                    <div className="mb-8 flex justify-between items-center w-full right-timeline">
-                    <div className="order-1 w-5/12"></div>
-                    <div className="order-1  w-5/12 px-1 py-4 text-left">
-                        <p className="mb-3 text-base text-yellow-300">6-9 May, 2021</p>
-                        <h4 className="mb-3 font-bold text-lg md:text-2xl">Participation</h4>
-                        <p className="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
-                        Participate online. The links for your registered events will be sent to you via email and whatsapp
-                        groups. Use those links and show your talent.
-                        </p>
-                    </div>
-                    </div>
-                    <div className="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
-                    <div className="order-1 w-5/12"></div>
-                    <div className="order-1 w-5/12 px-1 py-4 text-right">
-                        <p className="mb-3 text-base text-yellow-300"> 10 May, 2021</p>
-                        <h4 className="mb-3 font-bold text-lg md:text-2xl">Result Declaration</h4>
-                        <p className="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
-                        The ultimate genius will be revealed by our judging panel on 10th May, 2021 and the resukts will be
-                        announced on the whatsapp groups and will be mailed to you.
-                        </p>
-                    </div>
-                    </div>
-
-                    <div className="mb-8 flex justify-between items-center w-full right-timeline">
-                    <div className="order-1 w-5/12"></div>
-
-                    <div className="order-1  w-5/12 px-1 py-4">
-                        <p className="mb-3 text-base text-yellow-300">12 May, 2021</p>
-                        <h4 className="mb-3 font-bold  text-lg md:text-2xl text-left">Prize Distribution</h4>
-                        <p className="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
-                        The winners will be contacted by our team for their addresses and the winning goodies will be sent at
-                        their addresses.
-                        </p>
-                    </div>
-                    </div>
-                </div>
-                <img className="mx-auto -mt-36 md:-mt-36" src="https://user-images.githubusercontent.com/54521023/116968861-ef21a000-acd2-11eb-95ac-a34b5b490265.png" />
-                </div>
-            </div>
-            </div>
+          </div>
         </div>
-        </section>
+      </section>
+      <section className="bg-white-700 text-white py-8">
+        <div className="container mx-auto my-10 md:my-14 flex items-center justify-center">
+          <div className="text-center relative">
+            <h2 className="text-5xl mb-2 font-bold text-gray-800 md:text-6xl">
+              Mulai sekarang!
+            </h2>
+            <h2 className="text-2xl mb-2 font-medium text-gray-800 md:text-3xl">
+              Menuju kebebasan finansial dengan Finanze
+            </h2>
+            <h2 className="text-2xl font-medium text-gray-800 md:text-3xl mb-20">
+              Mulai sekarang dan jangan banyak alasan!
+            </h2>
+            <img
+              src={mac}
+              alt="Mac"
+              className="mt-4"
+              style={{ width: "971px", height: "585px" }}
+            />
+          </div>
+        </div>
+      </section>
+      <section className="bg-white-700 text-white">
+        <footer class="bg-blue-600 dark:bg-blue-600">
+          <div class="container px-6 py-12 mx-auto">
+            <div class="text-center">
+              <img
+                src={logo}
+                alt="Logo"
+                className="w-1/6 justify-center mx-auto"
+              />
+              <p class="max-w-xl text-2xl font-semibold mx-auto my-6 text-white">
+                Teman keuanganmu yang akan membantu mencapai tujuan keuangan!
+              </p>
+            </div>
+
+            <nav class="px-8">
+              <div class="-mb-px flex justify-center">
+                <Link to={'/'}>
+                <a
+                  class="no-underline text-teal-dark border-teal-dark font-regular text-xl py-3 mr-8"
+                  href="#"
+                >
+                  Beranda
+                </a>
+                </Link>
+                <Link to={'/laporan'}>
+                <a
+                  class="no-underline text-grey-dark border-transparent font-regular text-xl py-3 mr-8"
+                  href="#"
+                >
+                  Laporan
+                </a>
+                {/* /Users/altamis/Documents/Semester 3/finanze-new/finanzereactailwind/finanze-project/src/components/InputInvestasi.jsx */}
+                </Link>
+                <Link to={'/dashboard'}>
+                <a
+                  class="no-underline text-grey-dark border-transparent font-regular text-xl py-3 mr-8"
+                  href="#"
+                >
+                  Dashboard
+                </a>
+                </Link>
+                <Link to={'rekapinvestasi'}>
+                <a
+                  class="no-underline text-grey-dark border-transparent font-regular text-xl py-3"
+                  href="#"
+                >
+                  Rekap Investasi
+                </a>
+                </Link>
+              </div>
+            </nav>
+          </div>
+        </footer>
+      </section>
     </>
-  )
+  );
 }
-export default Beranda
+
+export default Beranda;

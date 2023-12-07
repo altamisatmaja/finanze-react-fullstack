@@ -9,15 +9,14 @@ import Edit from './components/Edit';
 import InputInvestasi from './components/InputInvestasi';
 import Statistik from './components/Statistik';
 import Beranda from './pages/Beranda';
+import Error404 from './pages/Error404';
 import Laporan from './pages/Laporan.jsx';
 import RekapInvestasi from './components/RekapInvestasi.jsx';
-import ApiCoba from './components/js/api_copy.jsx';
 
 function App() {
   return (
     <div className='app'>
       <ToastContainer></ToastContainer>
-      {/* <Header/> */}
       <Routes>
         <Route path="/register" element={ <Register/> } />
         <Route path="/login" element={ <Login/> } />
@@ -29,7 +28,7 @@ function App() {
         <Route path="/laporan" element={ <Laporan/> } />
         <Route path="/rekapinvestasi" element={ <RekapInvestasi/> } />
         <Route path="/" element={ <Beranda/> } />
-        <Route path="/coba" element={ <ApiCoba/> } />
+        <Route path="*" element={ <Error404/> } />
       </Routes>
     </div>
   )
