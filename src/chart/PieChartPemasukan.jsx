@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import Chart from 'chart.js/auto';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import Chart from "chart.js/auto";
+import axios from "axios";
 
 function PieChartPemasukan() {
   const [totalPemasukanArray, setTotalPemasukanArray] = useState([]);
@@ -9,41 +9,70 @@ function PieChartPemasukan() {
   const [dataKeuangan, setDataKeuangan] = useState([]);
 
   // console.log(dataKeuangan);
-  
+
   useEffect(() => {
     const ReadDatabase = async () => {
       try {
         const response = await axios.get("http://localhost:8087/datakeuangan");
         const dataKeuangan = response.data;
-    
-        const bulan1 = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
-    
+
+        const bulan1 = [
+          "01",
+          "02",
+          "03",
+          "04",
+          "05",
+          "06",
+          "07",
+          "08",
+          "09",
+          "10",
+          "11",
+          "12",
+        ];
+
         const filterDataByMonth = (dataKeuangan, month) => {
-          return dataKeuangan.filter(data => {
-            const dataMonth = data.tanggal ? data.tanggal.split('-')[1] : null;
+          return dataKeuangan.filter((data) => {
+            const dataMonth = data.tanggal ? data.tanggal.split("-")[1] : null;
             return dataMonth === month || dataMonth === null;
           });
         };
-    
-        const result = bulan1.map(month => {
+
+        const result = bulan1.map((month) => {
           const filteredData = filterDataByMonth(dataKeuangan, month);
-    
-          const pemasukanbulan1an = filteredData.filter(data => data.jenis === 'Pemasukan');
-          const Pengeluaranbulan1an = filteredData.filter(data => data.jenis === 'Pengeluaran');
-    
-          const totalPemasukan12 = pemasukanbulan1an.reduce((total, data) => total + parseInt(data.nilai), 0);
-          const totalPengeluaran2 = Pengeluaranbulan1an.reduce((total, data) => total + parseInt(data.nilai), 0);
-    
-          setTotalPemasukanArray(prevArray => [...prevArray, totalPemasukan12]);
-          setTotalPengeluaranArray(prevArray => [...prevArray, totalPengeluaran2]);
-    
+
+          const pemasukanbulan1an = filteredData.filter(
+            (data) => data.jenis === "Pemasukan"
+          );
+          const Pengeluaranbulan1an = filteredData.filter(
+            (data) => data.jenis === "Pengeluaran"
+          );
+
+          const totalPemasukan12 = pemasukanbulan1an.reduce(
+            (total, data) => total + parseInt(data.nilai),
+            0
+          );
+          const totalPengeluaran2 = Pengeluaranbulan1an.reduce(
+            (total, data) => total + parseInt(data.nilai),
+            0
+          );
+
+          setTotalPemasukanArray((prevArray) => [
+            ...prevArray,
+            totalPemasukan12,
+          ]);
+          setTotalPengeluaranArray((prevArray) => [
+            ...prevArray,
+            totalPengeluaran2,
+          ]);
+
           return {
             month: month,
             totalPemasukan12: totalPemasukan12,
             totalPengeluaran2: totalPengeluaran2,
           };
         });
-    
+
         console.log(result);
         console.log(totalPemasukanArray);
         console.log(totalPengeluaranArray);
@@ -56,7 +85,20 @@ function PieChartPemasukan() {
 
   useEffect(() => {
     const dataPie = {
-      labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
+      labels: [
+        "Januari",
+        "Februari",
+        "Maret",
+        "April",
+        "Mei",
+        "Juni",
+        "Juli",
+        "Agustus",
+        "September",
+        "Oktober",
+        "November",
+        "Desember",
+      ],
       datasets: [
         {
           label: "Pemasukan",
@@ -95,14 +137,14 @@ function PieChartPemasukan() {
 
   return (
     <div>
-      <div className='w-60 h-60 font-Montserrat font-bold'>
-          <div className="shadow-lg rounded-lg overflow-hidden">
-              <div className="py-3 px-5 bg-gray-50">Pie chart</div>
-              <canvas className="p-1" id="chartPiePemasukan"></canvas>
-          </div>
+      <div className="w-60 h-60 font-Montserrat font-bold">
+        <div className="shadow-lg rounded-lg overflow-hidden">
+          <div className="py-3 px-5 bg-gray-50">Pie chart</div>
+          <canvas className="p-1" id="chartPiePemasukan"></canvas>
+        </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default PieChartPemasukan;

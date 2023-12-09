@@ -53,6 +53,7 @@ function Login() {
   };
 
   return (
+    <>
     <div className=" w-1/2 mx-auto p-5 mt-10 mb-10 rounded-xl shadow-xl">
       <form className="container" onSubmit={prosesLogin}>
         <div className="card-body">
@@ -103,6 +104,7 @@ function Login() {
         </div>
       </form>
     </div>
+    </>
   );
 }
 

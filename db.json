@@ -48,6 +48,13 @@
       "email": "altamis@g.c",
       "password": "123",
       "id": "MJERV9Y"
+    },
+    {
+      "username": "altamis1608",
+      "nama": "Altamis Fattah Atmaja",
+      "email": "altamisfattah16@gmail.com",
+      "password": "ngawi123",
+      "id": "bifcodF"
     }
   ],
   "inputinvestasi": [
@@ -230,6 +237,33 @@
       "hargabeli": 20000,
       "hargajual": 10000,
       "persentase": 20
+    },
+    {
+      "id": 1702055855493,
+      "durasiinvestasi": "2023-12-09",
+      "tickernamaperusahaan": "ADMR - PT Adaro Minerals Indonesia Tbk.",
+      "lot": "10",
+      "hargabeli": "200",
+      "hargajual": "2000",
+      "persentase": "200"
+    },
+    {
+      "id": 1702108637237,
+      "durasiinvestasi": "2023-12-09",
+      "tickernamaperusahaan": "ADCP - Adhi Commuter Properti Tbk.",
+      "lot": "20",
+      "hargabeli": "202",
+      "hargajual": "2023",
+      "persentase": "1000"
+    },
+    {
+      "id": 1702110006945,
+      "durasiinvestasi": "2023-12-09",
+      "tickernamaperusahaan": "",
+      "lot": "10",
+      "hargabeli": "200",
+      "hargajual": "2000",
+      "persentase": "2000"
     }
   ],
   "datakeuangan": [
